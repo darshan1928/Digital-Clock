@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Digital Clock</title>
+    </head>
+    <body>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+            body {
+                background-color: #080202;
+                color: #FCE9F1;
+                font-family: "poppins";
+            }
+            #timeId{
+                height: 100vh;
+                width: 100%;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #timeId h1{
+                   font-weight: bold;
+                   font-size: 6rem;
+            }
+        </style>
+
+        <div id="timeId"></div>
+    </body>
+    <script src="./style.js"></script>
+    <script>
+        function runTime() {
+            var date = new Date();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var seconds = date.getSeconds();
+            var meridian = "AM";
+            var timeId = document.getElementById("timeId");
+
+            if (hour == 0) {
+                hour = 12;
+                meridian = "AM";
+            }
+            if (hour > 12) {
+                hour = hour - 12;
+                meridian = "PM";
+            }
+
+            hour = hour < 10 ? "0" + hour : hour;
+            minute = minute < 10 ? "0" + minute : minute;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            var time = `<h1> ${hour}:${minute}:${seconds} ${meridian}</h1>`;
+            timeId.innerHTML = time;
+            setTimeout(runTime, 1000);
+        }
+
+        runTime();
+    </script>
+</html>
